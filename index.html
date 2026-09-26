@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Axis Language Documentation</title>
+    <title>Axys Language Documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -21,7 +21,8 @@
                 <nav>
                     <ul class="list-unstyled d-flex flex-md-column flex-wrap gap-3">
                         <li><a href="#intro">Introduction</a></li>
-                        <li><a href="#syntax">Syntax</a></li>
+                        <li><a href="#instructions">Instructions</a></li>
+                        <li><a href="#memory">Memory & Cells</a></li>
                         <li><a href="#examples">Examples</a></li>
                     </ul>
                 </nav>
@@ -29,51 +30,126 @@
             <div class="col-12 col-md-8">
                 <section id="intro">
                     <h1>Introduction</h1>
-                    <p>This is the official documentation for the Axis programming language!</p>
-                    <p>Everything you should know about the language can be found here</p>
-
-                    <p>If you want to download the language here is our <a
-                            href="https://github.com/hatsunemikutoro-hash/axislang-axis">official github</a></p>
+                    <p>Welcome to the official documentation for the <strong>Axys</strong> programming language!</p>
+                    <p>Axys is an instruction- and memory-based programming language that combines the concepts of <strong>Assembly</strong> and <strong>Brainfuck</strong>.</p>
+                    <p>It runs on a large memory array containing <strong>256 positions</strong>. Each position has its own address and value, and your role is to manipulate this memory through different instructions to create various types of programs.</p>
+                    <p>Axys was designed to be the <strong>intermediate bridge</strong> between the transparency of low-level programming and the simplicity of high-level programming, allowing beginners to understand low-level concepts without feeling lost.</p>
                 </section>
 
-                <section id="syntax">
-                    <h1>Syntax</h1>
-                    <p>Axis is an assembly-like language with characteristics of the brainfuck language, and its goal is
-                        to be a didactic language</p>
-                    <p>therefore, each axis instruction can be represented as <code>INSTRUCTION [ARGS]</code> may have
-                        one or more arguments depending on the instruction</p>
-                    <p>In addition to not being case sensitive, there is not much for me to say because the language is
-                        still in progress</p>
+                <section id="instructions">
+                    <h1>Instructions</h1>
+                    <p>Axys instructions follow the format: <code>INSTRUCTION [ARGS]</code>. The language is case-insensitive.</p>
+                    
+                    <h3>Memory & Movement Instructions</h3>
+                    <ul>
+                        <li><code>MOVE &lt;address&gt;</code> - Move the cursor to a specific memory cell</li>
+                        <li><code>SET &lt;value&gt;</code> - Set the current cell to a value</li>
+                        <li><code>[address] -> name</code> - Create an alias for a memory address</li>
+                    </ul>
+                    
+                    <h3>Arithmetic Instructions</h3>
+                    <ul>
+                        <li><code>ADD &lt;value&gt;</code> - Add a value to the current cell</li>
+                        <li><code>SUB &lt;value&gt;</code> - Subtract a value from the current cell</li>
+                        <li><code>MULT &lt;value&gt;</code> - Multiply the current cell by a value</li>
+                        <li><code>DIV &lt;value&gt;</code> - Divide the current cell by a value (cannot divide by zero)</li>
+                    </ul>
+                    
+                    <h3>Output Instructions</h3>
+                    <ul>
+                        <li><code>PRINT [value]</code> - Print a numeric value (or current cell if no argument)</li>
+                        <li><code>PRINTC &lt;value&gt;</code> - Print as a character (or string if a string literal is provided)</li>
+                    </ul>
+                    
+                    <h3>Control Flow</h3>
+                    <ul>
+                        <li><code>JUMP &lt;line&gt;</code> - Jump to a specific line in the program</li>
+                        <li><code>EXIT</code> - Terminate the program</li>
+                    </ul>
+                    
+                    <h3>Advanced Features</h3>
+                    <ul>
+                        <li><code>*&lt;address&gt;</code> - Dereference: use the value at an address as a value</li>
+                        <li><code>[address]</code> - Indexing: use an address indirectly</li>
+                    </ul>
+                </section>
+
+                <section id="memory">
+                    <h1>Memory & Cells</h1>
+                    <p>Axys uses a virtual machine with <strong>256 memory cells</strong>, numbered from 0 to 255.</p>
+                    <p>When you start a program, all cells are initialized to 0. The <strong>cursor</strong> points to the current cell being manipulated.</p>
+                    <p>You can:</p>
+                    <ul>
+                        <li>Move the cursor to different cells with <code>MOVE</code></li>
+                        <li>Modify the value at the current cell with <code>SET</code>, <code>ADD</code>, <code>SUB</code>, <code>MULT</code>, <code>DIV</code></li>
+                        <li>Read values from cells using dereferencing with the <code>*</code> operator</li>
+                        <li>Create named aliases for addresses to make programs more readable</li>
+                    </ul>
                 </section>
 
                 <section id="examples">
                     <h1>Examples</h1>
-                    <h5>Hello Axis!</h5>
-                    <pre><code>PRINT "Hello, Axis!"</code></pre>
-                    <h5>output</h5>
-                    <samp>&gt; Hello, Axis!</samp>
-                    <h5>Two Sum</h5>
-                    <pre><code>ADD 2
-ADD 2
-PRINT
-</code></pre>
                     
-                    <h5>output</h5>
-                    <samp>&gt; 2</samp>
-
+                    <h5>Hello, Axys!</h5>
+                    <pre><code>printc "Hello, Axys!"</code></pre>
+                    <h5>Output</h5>
+                    <samp>&gt; Hello, Axys!</samp>
+                    
+                    <h5>Simple Addition</h5>
+                    <pre><code>set 5
+add 3
+print</code></pre>
+                    <h5>Output</h5>
+                    <samp>&gt; 8</samp>
+                    
                     <h5>Memory Manipulation</h5>
-                    <pre><code>MOVE 2
-ADD 1
-PRINT
-MOVE 0
-PRINT
-</code></pre>
-                    
-                    <h5>output</h5>
-                    <samp>&gt; 10</samp>
-                    
-                    <p>The output was 10 because cell 2 had the number 1 and cell 0 had the number 0 in the PRINT statement was printed without a new line</p>
+                    <pre><code>@ Set cell 0 to 10
+set 10
 
+@ Add 5 to cell 0
+add 5
+
+@ Print the result
+print</code></pre>
+                    <h5>Output</h5>
+                    <samp>&gt; 15</samp>
+                    
+                    <h5>Working with Multiple Cells</h5>
+                    <pre><code>@ Store 20 in cell 0
+set 20
+
+@ Move to cell 1 and store 7
+move 1
+set 7
+
+@ Move back to cell 0 and dereference cell 1
+move 0
+add *1
+
+@ Print result (20 + 7 = 27)
+print</code></pre>
+                    <h5>Output</h5>
+                    <samp>&gt; 27</samp>
+                    
+                    <h5>Using Aliases</h5>
+                    <pre><code>@ Create aliases
+[0] -> health
+[1] -> damage
+
+@ Set values
+move 0
+set 100
+move 1
+set 20
+
+@ Calculate damage
+move 0
+sub *1
+
+@ Print health after damage
+print</code></pre>
+                    <h5>Output</h5>
+                    <samp>&gt; 80</samp>
                 </section>
 
             </div>
